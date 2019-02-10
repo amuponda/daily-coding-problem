@@ -1,18 +1,27 @@
-// O(2n) + 2c = O(n) space/time compelixity
-int [] multiplier(int [] numbers) {
-    int size = numbers.length  
-    if (size) {
-        int total = numbers[0]
-        int [] result = new int[size]
-        
-        for (int i = 1; i < size; i++) {
-            total *= numbers[i]
+// O(n) time complexity 
+// o(1) space complexity
+
+public int[] productExceptSelf(int[] nums) {
+    int [] befores = new int [nums.length];
+    int tail = nums.length - 1;
+    for(int i = 0; i < nums.length; i++) {
+        if (i == 0) {
+            befores[i] = 1;
+        } else {
+            befores[i] = befores[i-1] * nums[i-1];    
         }
-        for (int i = 0; i < size; i++) {
-            result[i] = total/numbers[i]    
-        }
-        return result
     }
+    
+    int temp = 1;
+    for (int i = nums.length - 1; i >= 0; i--) {
+        if (i == (nums.length - 1)) {
+            befores[i] = befores[i]; 
+        } else {
+            temp *= nums[i + 1];
+            befores[i] = befores[i] * temp;
+        }
+    }
+    return befores;
 }
 
-multiplier([1, 2, 3, 4, 5] as int [])
+productExceptSelf([1, 2, 3, 4] as int []);
