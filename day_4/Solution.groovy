@@ -1,13 +1,17 @@
-int findPositive(int [] numbers) {
-    int minPos = 1
-    for (num in numbers) {
-        if (num > 0) {
-            if ((num - minPos) == 0) {
-                minPos++
-            } 
+class Solution {
+    public int firstMissingPositive(int[] nums) {
+        Arrays.sort(nums);
+        int minPos = 1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] <= 0) {
+                continue;
+            } else if (nums[i] > minPos) {
+                break;
+            } else if (nums[i] == minPos) {
+                minPos++;
+            }
         }
+        return minPos;
     }
-    return minPos
 }
-
-findPositive([1, 2, 3, 6, 2, 7, 0] as int [])
+new Solution.findMissingPositive([1, 2, 3, 6, 2, 7, 0] as int [])
