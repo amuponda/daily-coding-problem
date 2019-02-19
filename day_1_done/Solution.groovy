@@ -4,10 +4,10 @@ Boolean isAddsUp(List<Integer> numbers, Integer k) {
     Set remainders = new HashSet()
     for (number in numbers) {
         int remainder = k - number
-        if (remainders.contains(number)) {
+        if (remainders.contains(number)) { // 0(1)
             return true
         }
-        remainders.add(remainder)
+        remainders.add(remainder) // O(1)
     }
     return false
 }
